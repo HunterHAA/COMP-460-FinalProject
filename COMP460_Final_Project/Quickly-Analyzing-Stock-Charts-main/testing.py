@@ -1,5 +1,6 @@
 from PIL import Image
-from ArrayFromPic import ArrayFromPic as afp
+#from ArrayFromPic import ArrayFromPic as afp
+from ArrayFromPic1 import ArrayFromPic1 as afp
 from quickSort import quickSort as qs
 from mergeSort import mergeSort as ms
 import numpy as np
@@ -7,10 +8,14 @@ import time
 
 def solve(input_file, output_file):
     # Load Image
-    print("---Loading Image 01---", "\n")
+    print("---Loading Image 1---", "\n")
     im = Image.open(input_file)
+    newsize = (28, 28)
+    im = im.resize(newsize)
+    #im.show()
+
     array_from_pic = afp(im)
-    #print(array_from_pic.mapped_array, "\n")
+    print(array_from_pic.mapped_array, "\n")
 
     # create a new 1-D array to store the different index numbers which represent for number 1. 1-D array is converting from the 2-D array's columns
     # coding by Jiaqi Fang
@@ -27,7 +32,13 @@ def solve(input_file, output_file):
             if oneD_array[a] == 1:
                 #print(a)
                 arr1.append(a)
-    print("Unsorted 1-D array: ")
+                break
+
+    print("Unsorted 1-D array before reverse it: ")
+    print(arr1, "\n")
+
+    arr1.reverse()
+    print("Unsorted 1-D array expected order: ")
     print(arr1, "\n")
 
     # -----------------multipule testing sorting algorithms--------------------
@@ -82,7 +93,9 @@ def solve(input_file, output_file):
         print("They have same runtime.", "\n")
 
 def main():
-    solve('graphs/Graph01.jpg', 'output01.jpg')
+    #solve('graphs/Graph13.jpg', 'output13.jpg')
+    solve('newImages/image1.png', 'image1.jpg')
+
 
 if __name__ == '__main__':
     main()
